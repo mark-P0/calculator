@@ -16,31 +16,35 @@ html {
   box-sizing: border-box;
   padding: 1rem 0;
 
-  background-color: lightcoral;
+  background-color: white;
 }
 
 body {
   aspect-ratio: 9 / 18;
   /* max-width: 24rem; */
   margin: 0 auto;
-  border-radius: 2rem;
+  /* box-sizing: border-box; */
+  /* border: 4px solid gray; */
+  border-radius: 3rem;
   overflow: hidden;
+  box-shadow: 0 0 0.75rem 0.5rem dimgray;
 
   /*  Fix `overflow` bug for rounded-corner container
    *  Supposedly for Webkit browsers, e.g. Chrome; Idk why this [is present and] also works with Firefox
    *
    *  https://stackoverflow.com/questions/5736503/how-to-make-css3-rounded-corners-hide-overflow-in-chrome-opera/10296258#10296258
-   *  https://stackoverflow.com/questions/48325287/border-radius-and-overflow-hidden-with-child-background
+   *  https://stackoverflow.com/questions/13024812/overflowhidden-not-hiding-elements-under-a-border-radius
    */
-  mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
-  -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
+  /* mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC); */
+  /* -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC); */
 
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
+  color: white;
 
-  background-color: hsl(0, 0%, 12%);
+  background-color: black;
 }
 
 /****************************************************************
@@ -54,8 +58,10 @@ body {
   box-sizing: border-box;
   padding: 1rem;
   padding-bottom: 2rem;
+  /* padding: 2rem 1rem; */
 
   flex: 1;
+  gap: 1rem;
 
   display: flex;
   flex-direction: column;
@@ -64,7 +70,8 @@ body {
 #display {
   padding: 0 1rem;
   font-size: 5rem;
-  color: white;
+  color: inherit;
+  border-radius: 1rem;
 
   flex: 3;
 
@@ -72,15 +79,56 @@ body {
   justify-content: flex-end;
   align-items: flex-end;
 
-  background-color: black;
+  background-color: hsl(0, 0%, 16%);
 }
 
 #inputs {
+  /* box-sizing: border-box; */
+
   flex: 5;
 
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
 
+.input-button {
+  font-family: inherit;
+  width: 100%;
+  height: 100%;
+
+  /* all: unset; */
+  box-sizing: border-box;
+  border-radius: 3rem;
+  border: 1px solid black;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* text-align: center; */
+  font-size: 1.75rem;
+  color: inherit;
+
+  background-color: hsl(0, 0%, 16%);
+}
+
+.input-button-container {
+  padding: 0.25rem;
+
+  display: flex;
+
+  box-sizing: border-box;
+  /* border: 1px solid white; */
+  /* background-color: lightcoral; */
+}
+
+.input-button-top {
+  color: black;
+  background-color: darkgray;
+}
+.input-button-operator {
+  font-size: 2.25rem;
   background-color: orange;
 }
 
@@ -97,5 +145,6 @@ _ {
 
   text-align: center;
 
-  background-color: whitesmoke;
+  color: inherit;
+  /* background-color: whitesmoke; */
 }
