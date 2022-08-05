@@ -1,11 +1,7 @@
 html,
 body,
 _ {
-  font-family: Helvetica, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  box-sizing: border-box;
   height: 100%;
-
-  background-color: lightcoral;
 }
 
 pre,
@@ -16,7 +12,11 @@ _ {
 }
 
 html {
+  font-family: Helvetica, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-sizing: border-box;
   padding: 1rem 0;
+
+  background-color: lightcoral;
 }
 
 body {
