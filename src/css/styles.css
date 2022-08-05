@@ -15,6 +15,10 @@ _ {
   font-size: 0.75rem;
 }
 
+html {
+  padding: 1rem 0;
+}
+
 body {
   aspect-ratio: 9 / 18;
   /* max-width: 24rem; */
