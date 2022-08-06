@@ -19,7 +19,7 @@ customize0Button();
 
 function initializeInputButtons() {
   for (const def of InputDefinitions) {
-    const { text, classes } = def;
+    const { text, classes, callback } = def;
 
     /* Button element */
     const inputButton = document.createElement('button');
@@ -41,6 +41,13 @@ function initializeInputButtons() {
     /* Add to DOM */
     containerDiv.appendChild(inputButton);
     Inputs.appendChild(containerDiv);
+
+    /* Event listener */
+    if (callback === undefined) {
+      console.warn(`\`${text}\` button still does not have a callback!`);
+      continue;
+    }
+    inputButton.addEventListener('click', callback);
   }
 }
 
