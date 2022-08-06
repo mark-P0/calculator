@@ -68,7 +68,8 @@ function customize0Button() {
   fakeButton.classList.toggle('input-button');
 
   fakeButton.textContent = inputButton0.textContent;
-  fakeButton.style.border = 'none';
+  fakeButton.style.backgroundColor = 'unset';
+  fakeButton.style.border = 'unset';
   fakeButton.style.width = '50%';
   fakeButton.style.paddingRight = '0.25rem';
   inputButton0.style.padding = 0;

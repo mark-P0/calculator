@@ -113,6 +113,20 @@ body {
   background-color: hsl(0, 0%, 16%);
 }
 
+/*  Inspired by the ripple effects
+    https://css-tricks.com/how-to-recreate-the-ripple-effect-of-material-design-buttons/
+ */
+
+.input-button:hover {
+  filter: brightness(120%);
+  transition: 0.2s;
+}
+
+.input-button:active {
+  filter: brightness(66%);
+  transition: 0s;
+}
+
 .input-button-container {
   padding: 0.25rem;
 
@@ -127,6 +141,7 @@ body {
   color: black;
   background-color: darkgray;
 }
+
 .input-button-operator {
   font-size: 2.25rem;
   background-color: orange;
