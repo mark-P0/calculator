@@ -137,6 +137,18 @@ body {
   /* background-color: lightcoral; */
 }
 
+.input-button-fake {
+  background-color: unset;
+  border: unset;
+  width: 50%;
+  padding-right: 0.25rem;
+}
+
+.input-button-container-fake {
+  padding: 0;
+  justify-content: left;
+}
+
 .input-button-top {
   color: black;
   background-color: darkgray;

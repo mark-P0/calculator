@@ -57,23 +57,24 @@ function initializeInputButtons() {
 }
 
 function customize0Button() {
-  /* Double the width of the `0` container */
+  /*  Double the width of the `0` container,
+      which the actual `0` button will fill
+   */
   const inputButton0Container = Inputs.children[Inputs.children.length - 3];
   inputButton0Container.style.width = inputWidth * 2 + 'px';
 
-  /* FIXME: Documentation!  */
+  /*  Nest a "button" within the actual `0` button
+      so that it will align with the left buttons.
+      There should be a better way to do this...
+   */
   const inputButton0 = inputButton0Container.children[0];
   const fakeButton = document.createElement('div');
 
   fakeButton.classList.toggle('input-button');
+  fakeButton.classList.toggle('input-button-fake');
+  inputButton0.classList.toggle('input-button-container-fake');
 
   fakeButton.textContent = inputButton0.textContent;
-  fakeButton.style.backgroundColor = 'unset';
-  fakeButton.style.border = 'unset';
-  fakeButton.style.width = '50%';
-  fakeButton.style.paddingRight = '0.25rem';
-  inputButton0.style.padding = 0;
-  inputButton0.style.justifyContent = 'left';
   inputButton0.textContent = undefined;
 
   inputButton0.appendChild(fakeButton);
