@@ -6,7 +6,7 @@ const Display = {
   get text() {
     const currentText = this.element.textContent;
 
-    if (Number.parseInt(currentText) === NaN || this.isForClearing) {
+    if (Number.parseFloat(currentText) === NaN || this.isForClearing) {
       this.isForClearing = false;
       return this.textDefault;
     }
@@ -31,7 +31,7 @@ const Display = {
   },
 
   get textNumeric() {
-    return Number.parseInt(this.text.replace(/,/g, ''));
+    return Number.parseFloat(this.text.replace(/,/g, ''));
   },
 
   delete() {
