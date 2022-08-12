@@ -99,7 +99,7 @@ const InputDefinitions = [
   {
     text: '.',
     classes: ['input-button'],
-    callback: undefined,
+    callback: addRadixPoint,
   },
   {
     text: '=',
@@ -122,6 +122,10 @@ function addDigitToDisplay(event) {
   const button = event.target;
   const digit = button.textContent;
   Display.text += digit;
+}
+
+function addRadixPoint() {
+  Display.text += '.';
 }
 
 function setOperator(event) {

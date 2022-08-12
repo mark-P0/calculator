@@ -15,6 +15,14 @@ const Display = {
   },
 
   set text(candidateValue) {
+    if (
+      candidateValue[candidateValue.length - 1] === '.' &&
+      candidateValue.slice(0, -1).indexOf('.') === -1
+    ) {
+      this.element.textContent = candidateValue;
+      return;
+    }
+
     candidateValue = candidateValue.replace(/,/g, ''); // Strip comma separators
     const original = candidateValue;
     candidateValue = Number.parseFloat(candidateValue); // Convert to actual number
