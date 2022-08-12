@@ -1,12 +1,13 @@
 const Display = {
   element: document.getElementById('display'),
-
   textDefault: '0',
+  isForClearing: false,
 
   get text() {
     const currentText = this.element.textContent;
 
-    if (currentText.match(/((?![\d,]).)/g) !== null) {
+    if (Number.parseInt(currentText) === NaN || this.isForClearing) {
+      this.isForClearing = false;
       return this.textDefault;
     }
 
@@ -16,7 +17,7 @@ const Display = {
   set text(candidateValue) {
     candidateValue = candidateValue.replace(/,/g, ''); // Strip comma separators
     const original = candidateValue;
-    candidateValue = Number.parseInt(candidateValue); // Convert to actual number
+    candidateValue = Number.parseFloat(candidateValue); // Convert to actual number
 
     if (candidateValue > Number.MAX_SAFE_INTEGER) {
       console.warn(
@@ -27,6 +28,10 @@ const Display = {
 
     candidateValue = candidateValue.toLocaleString(); // i.e. add comma separators
     this.element.textContent = candidateValue; // Show on DOM
+  },
+
+  get textNumeric() {
+    return Number.parseInt(this.text.replace(/,/g, ''));
   },
 };
 

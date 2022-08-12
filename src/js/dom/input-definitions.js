@@ -1,4 +1,6 @@
 import Display from './display.js';
+import State from '../state.js';
+import { operate } from '../operators.js';
 
 /*  Intended layout is:
  *    [A C]  [ ± ]  [ % ]  [ ÷ ]
@@ -27,7 +29,7 @@ const InputDefinitions = [
   {
     text: '÷',
     classes: ['input-button', 'input-button-operator'],
-    callback: undefined,
+    callback: setOperator,
   },
   {
     text: '7',
@@ -47,7 +49,7 @@ const InputDefinitions = [
   {
     text: '×',
     classes: ['input-button', 'input-button-operator'],
-    callback: undefined,
+    callback: setOperator,
   },
   {
     text: '4',
@@ -67,7 +69,7 @@ const InputDefinitions = [
   {
     text: '−',
     classes: ['input-button', 'input-button-operator'],
-    callback: undefined,
+    callback: setOperator,
   },
   {
     text: '1',
@@ -87,7 +89,7 @@ const InputDefinitions = [
   {
     text: '+',
     classes: ['input-button', 'input-button-operator'],
-    callback: undefined,
+    callback: setOperator,
   },
   {
     text: '0',
@@ -102,7 +104,7 @@ const InputDefinitions = [
   {
     text: '=',
     classes: ['input-button', 'input-button-operator'],
-    callback: undefined,
+    callback: setOperatorEquals,
   },
 ];
 
@@ -119,12 +121,50 @@ const InputDefinitions = [
 function addDigitToDisplay(event) {
   const button = event.target;
   const digit = button.textContent;
-
   Display.text += digit;
+}
+
+function setOperator(event) {
+  const button = event.target;
+  const newOperatorSymbol = button.textContent;
+
+  if (Display.isForClearing) return;
+
+  if (State.operator === undefined) {
+    State.storedValue = Display.textNumeric;
+  } else {
+    const op1 = State.storedValue;
+    const op2 = Display.textNumeric;
+    State.storedValue = operate(State.operator, op1, op2);
+  }
+
+  State.operator = newOperatorSymbol;
+  Display.isForClearing = true;
+
+  console.log(State);
+}
+
+function setOperatorEquals() {
+  if (
+    State.storedValue !== undefined &&
+    State.operator !== undefined &&
+    !Display.isForClearing
+  ) {
+    const op1 = State.storedValue;
+    const op2 = Display.textNumeric;
+    const res = operate(State.operator, op1, op2);
+    Display.text = res.toString();
+    console.log({ op1, op2, res });
+
+    State.storedValue = undefined;
+    State.operator = undefined;
+    Display.isForClearing = true;
+  }
 }
 
 /****************************************************************
  ****************************************************************
  ****************************************************************
  ****************************************************************/
+
 export default InputDefinitions;
