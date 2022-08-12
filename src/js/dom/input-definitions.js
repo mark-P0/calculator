@@ -135,7 +135,9 @@ function setOperator(event) {
   } else {
     const op1 = State.storedValue;
     const op2 = Display.textNumeric;
-    State.storedValue = operate(State.operator, op1, op2);
+    const res = operate(State.operator, op1, op2);
+    Display.text = res.toString();
+    State.storedValue = res;
   }
 
   State.operator = newOperatorSymbol;
@@ -146,19 +148,22 @@ function setOperator(event) {
 
 function setOperatorEquals() {
   if (
-    State.storedValue !== undefined &&
-    State.operator !== undefined &&
-    !Display.isForClearing
-  ) {
-    const op1 = State.storedValue;
-    const op2 = Display.textNumeric;
-    const res = operate(State.operator, op1, op2);
-    Display.text = res.toString();
-    console.log({ op1, op2, res });
+    State.storedValue === undefined ||
+    State.operator === undefined ||
+    Display.isForClearing ||
+    Display.text === Display.textDefault
+  )
+    return;
 
-    State.reset();
-    Display.isForClearing = true;
-  }
+  const op1 = State.storedValue;
+  const op2 = Display.textNumeric;
+  const res = operate(State.operator, op1, op2);
+  Display.text = res.toString();
+
+  console.log({ op1, op2, res });
+
+  State.reset();
+  Display.isForClearing = true;
 }
 
 function clearAll() {
