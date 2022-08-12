@@ -33,8 +33,13 @@ const Display = {
   get textNumeric() {
     return Number.parseInt(this.text.replace(/,/g, ''));
   },
+
+  reset() {
+    this.text = this.textDefault;
+    this.isForClearing = false;
+  },
 };
 
-Display.text = Display.textDefault;
+Display.reset();
 
 export default Display;

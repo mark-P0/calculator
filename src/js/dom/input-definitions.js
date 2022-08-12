@@ -14,7 +14,7 @@ const InputDefinitions = [
   {
     text: 'AC',
     classes: ['input-button', 'input-button-top'],
-    callback: undefined,
+    callback: clearAll,
   },
   {
     text: '±',
@@ -156,10 +156,14 @@ function setOperatorEquals() {
     Display.text = res.toString();
     console.log({ op1, op2, res });
 
-    State.storedValue = undefined;
-    State.operator = undefined;
+    State.reset();
     Display.isForClearing = true;
   }
+}
+
+function clearAll() {
+  State.reset();
+  Display.reset();
 }
 
 /****************************************************************
