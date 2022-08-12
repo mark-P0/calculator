@@ -24,7 +24,7 @@ const InputDefinitions = [
   {
     text: '%',
     classes: ['input-button', 'input-button-top'],
-    callback: undefined,
+    callback: setOperatorPercentage,
   },
   {
     text: '÷',
@@ -164,6 +164,33 @@ function setOperatorEquals() {
 
   State.reset();
   Display.isForClearing = true;
+}
+
+function setOperatorPercentage() {
+  /*  Transform the second operand into a percentage of the first operand
+   *
+   *                            Transformation        Simplification
+   *        Addition | A + B% | A + (A * B/100) | [ A * (1 + B/100)     ]
+   *     Subtraction | A - B% | A - (A * B/100) | [ A * (1 - B/100)     ]
+   *  Multiplication | A * B% | A * (A * B/100) | [ A² * B/100          ]
+   *        Division | A / B% | A / (A * B/100) | [ 1/(B/100) === 100/B ]
+   *
+   *  https://devblogs.microsoft.com/oldnewthing/20080110-00/?p=23853
+   *  https://sciencing.com/use-percentage-key-calculator-6188449.html
+   */
+
+  if (
+    State.storedValue === undefined ||
+    State.operator === undefined ||
+    Display.isForClearing ||
+    Display.text === Display.textDefault
+  )
+    return;
+
+  const op1 = State.storedValue;
+  const op2 = Display.textNumeric;
+  const res = op1 * (op2 / 100);
+  Display.text = res.toString();
 }
 
 function clearAll() {
