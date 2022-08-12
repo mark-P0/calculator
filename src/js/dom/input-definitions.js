@@ -18,114 +18,133 @@ const InputDefinitions = [
     classes: ['input-button', 'input-button-top'],
     callback: clearAll,
     buttonElement: undefined,
+    keyboardKey: 'Escape',
   },
   {
     text: '±',
     classes: ['input-button', 'input-button-top'],
     callback: toggleNegative,
     buttonElement: undefined,
+    keyboardKey: undefined,
   },
   {
     text: '%',
     classes: ['input-button', 'input-button-top'],
     callback: setOperatorPercentage,
     buttonElement: undefined,
+    keyboardKey: '%',
   },
   {
     text: '÷',
     classes: ['input-button', 'input-button-operator'],
     callback: setOperator,
     buttonElement: undefined,
+    keyboardKey: '/',
   },
   {
     text: '7',
     classes: ['input-button'],
     callback: addDigitToDisplay,
     buttonElement: undefined,
+    keyboardKey: '7',
   },
   {
     text: '8',
     classes: ['input-button'],
     callback: addDigitToDisplay,
     buttonElement: undefined,
+    keyboardKey: '8',
   },
   {
     text: '9',
     classes: ['input-button'],
     callback: addDigitToDisplay,
     buttonElement: undefined,
+    keyboardKey: '9',
   },
   {
     text: '×',
     classes: ['input-button', 'input-button-operator'],
     callback: setOperator,
     buttonElement: undefined,
+    keyboardKey: '*',
   },
   {
     text: '4',
     classes: ['input-button'],
     callback: addDigitToDisplay,
     buttonElement: undefined,
+    keyboardKey: '4',
   },
   {
     text: '5',
     classes: ['input-button'],
     callback: addDigitToDisplay,
     buttonElement: undefined,
+    keyboardKey: '5',
   },
   {
     text: '6',
     classes: ['input-button'],
     callback: addDigitToDisplay,
     buttonElement: undefined,
+    keyboardKey: '6',
   },
   {
     text: '−',
     classes: ['input-button', 'input-button-operator'],
     callback: setOperator,
     buttonElement: undefined,
+    keyboardKey: '-',
   },
   {
     text: '1',
     classes: ['input-button'],
     callback: addDigitToDisplay,
     buttonElement: undefined,
+    keyboardKey: '1',
   },
   {
     text: '2',
     classes: ['input-button'],
     callback: addDigitToDisplay,
     buttonElement: undefined,
+    keyboardKey: '2',
   },
   {
     text: '3',
     classes: ['input-button'],
     callback: addDigitToDisplay,
     buttonElement: undefined,
+    keyboardKey: '3',
   },
   {
     text: '+',
     classes: ['input-button', 'input-button-operator'],
     callback: setOperator,
     buttonElement: undefined,
+    keyboardKey: '+',
   },
   {
     text: '0',
     classes: ['input-button'],
     callback: addDigitToDisplay,
     buttonElement: undefined,
+    keyboardKey: '0',
   },
   {
     text: '.',
     classes: ['input-button'],
     callback: addRadixPoint,
     buttonElement: undefined,
+    keyboardKey: '.',
   },
   {
     text: '=',
     classes: ['input-button', 'input-button-operator'],
     callback: setOperatorEquals,
     buttonElement: undefined,
+    keyboardKey: 'Enter',
   },
 ];
 
@@ -250,15 +269,17 @@ function toggleNegative() {
  ****************************************************************
  ****************************************************************/
 
-document.addEventListener('keydown', (event) => {
+function keyboardPress(event) {
   const { key } = event;
 
-  const def = InputDefinitions.find(({ text }) => text === key);
-  if (def === undefined) return;
+  const def = InputDefinitions.find((def) => def.keyboardKey === key);
+  if (def === undefined) return; // Not found
 
-  console.log(def);
-  console.log(def.buttonElement);
-});
+  /* Simulate clicking the button for effect */
+  const { buttonElement } = def;
+  buttonElement.dispatchEvent(new Event('click'));
+}
+document.addEventListener('keydown', keyboardPress);
 
 /****************************************************************
  ****************************************************************
