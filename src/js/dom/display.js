@@ -34,6 +34,10 @@ const Display = {
     return Number.parseInt(this.text.replace(/,/g, ''));
   },
 
+  delete() {
+    this.text = this.text.slice(0, -1) || this.textDefault;
+  },
+
   reset() {
     this.text = this.textDefault;
     this.isForClearing = false;
@@ -41,5 +45,6 @@ const Display = {
 };
 
 Display.reset();
+Display.element.addEventListener('click', Display.delete.bind(Display));
 
 export default Display;
