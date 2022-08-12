@@ -19,7 +19,7 @@ const InputDefinitions = [
   {
     text: '±',
     classes: ['input-button', 'input-button-top'],
-    callback: undefined,
+    callback: toggleNegative,
   },
   {
     text: '%',
@@ -164,6 +164,10 @@ function setOperatorEquals() {
 function clearAll() {
   State.reset();
   Display.reset();
+}
+
+function toggleNegative() {
+  Display.text = (Number.parseFloat(Display.text) * -1).toString();
 }
 
 /****************************************************************
