@@ -125,10 +125,10 @@ function addDigitToDisplay(event) {
 }
 
 function setOperator(event) {
+  if (Display.isForClearing || Display.text === Display.textDefault) return;
+
   const button = event.target;
   const newOperatorSymbol = button.textContent;
-
-  if (Display.isForClearing) return;
 
   if (State.operator === undefined) {
     State.storedValue = Display.textNumeric;
