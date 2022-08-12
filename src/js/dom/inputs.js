@@ -42,6 +42,9 @@ function initializeInputButtons() {
     containerDiv.appendChild(inputButton);
     Inputs.appendChild(containerDiv);
 
+    /* Add button reference */
+    def.buttonElement = inputButton;
+
     /* Event listener */
     if (callback === undefined) {
       console.warn(`\`${text}\` button still does not have a callback!`);

@@ -8,6 +8,8 @@ import { operate } from '../operators.js';
  *    [ 4 ]  [ 5 ]  [ 6 ]  [ − ]
  *    [ 1 ]  [ 2 ]  [ 3 ]  [ + ]
  *    [ 0        ]  [ . ]  [ = ]
+ *
+ *  `buttonElement` will be defined on actual button creation
  */
 
 const InputDefinitions = [
@@ -15,96 +17,115 @@ const InputDefinitions = [
     text: 'AC',
     classes: ['input-button', 'input-button-top'],
     callback: clearAll,
+    buttonElement: undefined,
   },
   {
     text: '±',
     classes: ['input-button', 'input-button-top'],
     callback: toggleNegative,
+    buttonElement: undefined,
   },
   {
     text: '%',
     classes: ['input-button', 'input-button-top'],
     callback: setOperatorPercentage,
+    buttonElement: undefined,
   },
   {
     text: '÷',
     classes: ['input-button', 'input-button-operator'],
     callback: setOperator,
+    buttonElement: undefined,
   },
   {
     text: '7',
     classes: ['input-button'],
     callback: addDigitToDisplay,
+    buttonElement: undefined,
   },
   {
     text: '8',
     classes: ['input-button'],
     callback: addDigitToDisplay,
+    buttonElement: undefined,
   },
   {
     text: '9',
     classes: ['input-button'],
     callback: addDigitToDisplay,
+    buttonElement: undefined,
   },
   {
     text: '×',
     classes: ['input-button', 'input-button-operator'],
     callback: setOperator,
+    buttonElement: undefined,
   },
   {
     text: '4',
     classes: ['input-button'],
     callback: addDigitToDisplay,
+    buttonElement: undefined,
   },
   {
     text: '5',
     classes: ['input-button'],
     callback: addDigitToDisplay,
+    buttonElement: undefined,
   },
   {
     text: '6',
     classes: ['input-button'],
     callback: addDigitToDisplay,
+    buttonElement: undefined,
   },
   {
     text: '−',
     classes: ['input-button', 'input-button-operator'],
     callback: setOperator,
+    buttonElement: undefined,
   },
   {
     text: '1',
     classes: ['input-button'],
     callback: addDigitToDisplay,
+    buttonElement: undefined,
   },
   {
     text: '2',
     classes: ['input-button'],
     callback: addDigitToDisplay,
+    buttonElement: undefined,
   },
   {
     text: '3',
     classes: ['input-button'],
     callback: addDigitToDisplay,
+    buttonElement: undefined,
   },
   {
     text: '+',
     classes: ['input-button', 'input-button-operator'],
     callback: setOperator,
+    buttonElement: undefined,
   },
   {
     text: '0',
     classes: ['input-button'],
     callback: addDigitToDisplay,
+    buttonElement: undefined,
   },
   {
     text: '.',
     classes: ['input-button'],
     callback: addRadixPoint,
+    buttonElement: undefined,
   },
   {
     text: '=',
     classes: ['input-button', 'input-button-operator'],
     callback: setOperatorEquals,
+    buttonElement: undefined,
   },
 ];
 
@@ -223,6 +244,21 @@ function clearAll() {
 function toggleNegative() {
   Display.text = (Number.parseFloat(Display.text) * -1).toString();
 }
+
+/****************************************************************
+ ****************************************************************
+ ****************************************************************
+ ****************************************************************/
+
+document.addEventListener('keydown', (event) => {
+  const { key } = event;
+
+  const def = InputDefinitions.find(({ text }) => text === key);
+  if (def === undefined) return;
+
+  console.log(def);
+  console.log(def.buttonElement);
+});
 
 /****************************************************************
  ****************************************************************
