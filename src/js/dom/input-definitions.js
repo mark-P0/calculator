@@ -25,7 +25,7 @@ const InputDefinitions = [
     classes: ['input-button', 'input-button-top'],
     callback: toggleNegative,
     buttonElement: undefined,
-    keyboardKey: undefined,
+    keyboardKey: 'Alt',
   },
   {
     text: '%',
