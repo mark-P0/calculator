@@ -44,6 +44,8 @@ body {
   flex-direction: column;
   color: white;
 
+  user-select: none;
+
   background-color: black;
 }
 
