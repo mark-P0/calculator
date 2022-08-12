@@ -7,6 +7,7 @@ const Display = {
     const currentText = this.element.textContent;
 
     if (Number.isNaN(Number.parseFloat(currentText)) || this.isForClearing) {
+      Display.element.classList.remove('display-final');
       this.isForClearing = false;
       return this.textDefault;
     }

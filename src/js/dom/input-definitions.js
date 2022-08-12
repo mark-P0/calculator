@@ -220,6 +220,7 @@ function setOperatorEquals() {
   const op2 = Display.textNumeric;
   const res = operate(State.operator, op1, op2);
   Display.text = res.toString();
+  Display.element.classList.add('display-final');
 
   console.log({ op1, op2, res });
 

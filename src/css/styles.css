@@ -70,7 +70,7 @@ body {
 #display {
   padding: 0 1rem;
   font-size: 5rem;
-  color: inherit;
+  /* color: inherit; */
   border-radius: 1.5rem;
   overflow: hidden;
 
@@ -81,6 +81,10 @@ body {
   align-items: flex-end;
 
   background-color: hsl(0, 0%, 16%);
+}
+
+.display-final {
+  color: orange;
 }
 
 #inputs {
