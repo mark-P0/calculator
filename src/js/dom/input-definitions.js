@@ -125,12 +125,24 @@ function addDigitToDisplay(event) {
 }
 
 function setOperator(event) {
-  if (Display.isForClearing || Display.text === Display.textDefault) return;
+  if (
+    // State.storedValue === undefined ||
+    // State.operator === undefined ||
+    Display.isForClearing ||
+    // Display.text === Display.textDefault ||
+    false
+  )
+    return;
 
   const button = event.target;
   const newOperatorSymbol = button.textContent;
 
-  if (State.operator === undefined) {
+  if (State.operator === '÷' && Display.textNumeric === 0) {
+    Display.setEmoji('🤯');
+    State.reset();
+    Display.isForClearing = true;
+    return;
+  } else if (State.operator === undefined) {
     State.storedValue = Display.textNumeric;
   } else {
     const op1 = State.storedValue;
@@ -151,9 +163,14 @@ function setOperatorEquals() {
     State.storedValue === undefined ||
     State.operator === undefined ||
     Display.isForClearing ||
-    Display.text === Display.textDefault
+    // Display.text === Display.textDefault
+    false
   )
     return;
+
+  if (State.operator === '÷' && Display.textNumeric === 0) {
+    return Display.setEmoji('🤯');
+  }
 
   const op1 = State.storedValue;
   const op2 = Display.textNumeric;
@@ -183,7 +200,8 @@ function setOperatorPercentage() {
     State.storedValue === undefined ||
     State.operator === undefined ||
     Display.isForClearing ||
-    Display.text === Display.textDefault
+    Display.text === Display.textDefault ||
+    false
   )
     return;
 

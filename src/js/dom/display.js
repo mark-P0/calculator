@@ -6,7 +6,7 @@ const Display = {
   get text() {
     const currentText = this.element.textContent;
 
-    if (Number.parseFloat(currentText) === NaN || this.isForClearing) {
+    if (Number.isNaN(Number.parseFloat(currentText)) || this.isForClearing) {
       this.isForClearing = false;
       return this.textDefault;
     }
@@ -34,6 +34,10 @@ const Display = {
     return Number.parseFloat(this.text.replace(/,/g, ''));
   },
 
+  setEmoji(emoji) {
+    this.element.textContent = emoji;
+  },
+
   delete() {
     this.text = this.text.slice(0, -1) || this.textDefault;
   },
@@ -45,6 +49,7 @@ const Display = {
 };
 
 Display.reset();
+Display.setEmoji('👋🏼');
 Display.element.addEventListener('click', Display.delete.bind(Display));
 
 export default Display;
